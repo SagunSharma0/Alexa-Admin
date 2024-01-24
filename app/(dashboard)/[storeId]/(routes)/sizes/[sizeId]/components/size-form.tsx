@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
 import { Heading } from "@/components/ui/heading"
-import ImageUpload from "@/components/ui/image-upload"
 import { AlertModal } from "@/components/ui/modals/alert-modal"
 
 const formSchema = z.object({
@@ -53,8 +52,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
   const form = useForm<SizeFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
-      name: '',
-      value: ''
+      name: ''
     }
   });
 
@@ -93,7 +91,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
 
   return (
     <>
-    <AlertModal
+    <AlertModal 
       isOpen={open} 
       onClose={() => setOpen(false)}
       onConfirm={onDelete}

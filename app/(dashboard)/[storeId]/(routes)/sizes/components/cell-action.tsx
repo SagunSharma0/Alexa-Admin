@@ -14,9 +14,10 @@ import {
   DropdownMenuLabel, 
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { AlertModal } from "@/components/ui/modals/alert-modal";
+
 
 import { SizeColumn } from "./columns";
+import { AlertModal } from "@/components/ui/modals/alert-modal";
 
 interface CellActionProps {
   data: SizeColumn;
@@ -51,7 +52,7 @@ export const CellAction: React.FC<CellActionProps> = ({
 
   return (
     <>
-      <AlertModal 
+      <AlertModal
         isOpen={open} 
         onClose={() => setOpen(false)}
         onConfirm={onConfirm}

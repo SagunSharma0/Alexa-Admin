@@ -1,20 +1,20 @@
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs";
 
 import prismadb from "@/lib/prismadb";
+import { auth } from "@clerk/nextjs";
 
 export async function GET(
   req: Request,
-  { params }: { params: { sizeID: string } }
+  { params }: { params: { sizeId: string } }
 ) {
   try {
-    if (!params.sizeID) {
-      return new NextResponse("size id is required", { status: 400 });
+    if (!params.sizeId) {
+      return new NextResponse("Size id is required", { status: 400 });
     }
 
     const size = await prismadb.size.findUnique({
       where: {
-        id: params.sizeID
+        id: params.sizeId
       }
     });
   
@@ -43,7 +43,7 @@ export async function DELETE(
     const storeByUserId = await prismadb.store.findFirst({
       where: {
         id: params.storeId,
-        userId,
+        userId
       }
     });
 
@@ -53,7 +53,7 @@ export async function DELETE(
 
     const size = await prismadb.size.delete({
       where: {
-        id: params.sizeId,
+        id: params.sizeId
       }
     });
   
@@ -67,15 +67,15 @@ export async function DELETE(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { sizeID: string, storeId: string } }
+  { params }: { params: { sizeId: string, storeId: string } }
 ) {
-  try {   
+  try {
     const { userId } = auth();
 
     const body = await req.json();
-    
+
     const { name, value } = body;
-    
+
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 403 });
     }
@@ -88,24 +88,25 @@ export async function PATCH(
       return new NextResponse("Value is required", { status: 400 });
     }
 
-    if (!params.sizeID) {
+
+    if (!params.sizeId) {
       return new NextResponse("Size id is required", { status: 400 });
     }
 
     const storeByUserId = await prismadb.store.findFirst({
       where: {
         id: params.storeId,
-        userId,
+        userId
       }
     });
 
     if (!storeByUserId) {
-      return new NextResponse("Unauthorized", { status: 403 });
+      return new NextResponse("Unauthorized", { status: 405 });
     }
 
     const size = await prismadb.size.update({
       where: {
-        id: params.sizeID,
+        id: params.sizeId
       },
       data: {
         name,

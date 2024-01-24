@@ -20,6 +20,6 @@ const SizePage = async ({
       </div>
     </div>
   );
-}  
+}
 
 export default SizePage;
