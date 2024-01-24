@@ -22,11 +22,10 @@ import {
 } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
 import { Heading } from "@/components/ui/heading"
-import ImageUpload from "@/components/ui/image-upload"
 import { AlertModal } from "@/components/ui/modals/alert-modal"
 
 const formSchema = z.object({
-  name: z.string().min(1),
+  name: z.string().min(2),
   value: z.string().min(4).max(9).regex(/^#/, {
     message: 'String must be a valid hex code'
   }),
@@ -55,8 +54,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
   const form = useForm<ColorFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
-      name: '',
-      value: ''
+      name: ''
     }
   });
 
@@ -95,7 +93,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
 
   return (
     <>
-    <AlertModal
+    <AlertModal 
       isOpen={open} 
       onClose={() => setOpen(false)}
       onConfirm={onDelete}
@@ -138,13 +136,13 @@ export const ColorForm: React.FC<ColorFormProps> = ({
                 <FormItem>
                   <FormLabel>Value</FormLabel>
                   <FormControl>
-                  <div className="flex items-center gap-x-4">
+                    <div className="flex items-center gap-x-4">
                       <Input disabled={loading} placeholder="Color value" {...field} />
-                      </div>
-                        <div
+                      <div 
                         className="border p-4 rounded-full" 
                         style={{ backgroundColor: field.value }}
                       />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
