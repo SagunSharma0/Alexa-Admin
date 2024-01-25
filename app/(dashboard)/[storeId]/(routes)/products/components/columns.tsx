@@ -9,10 +9,11 @@ export type ProductColumn = {
   name: string;
   price: string;
   category: string;
+  size: string;
   color: string;
+  createdAt: string;
   isFeatured: boolean;
   isArchived: boolean;
-  createdAt: string;
 }
 
 export const columns: ColumnDef<ProductColumn>[] = [
