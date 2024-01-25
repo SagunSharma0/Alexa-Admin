@@ -3,9 +3,8 @@ import { format } from "date-fns";
 import prismadb from "@/lib/prismadb";
 import { formatter } from "@/lib/utils";
 
-import { ProductClient } from "./components/client";
 import { ProductColumn } from "./components/columns";
-
+import { ProductsClient } from "./components/client";
 
 const ProductsPage = async ({
   params
@@ -28,7 +27,7 @@ const ProductsPage = async ({
 
   const formattedProducts: ProductColumn[] = products.map((item) => ({
     id: item.id,
-    label: item.name,
+    name: item.name,
     isFeatured: item.isFeatured,
     isArchived: item.isArchived,
     price: formatter.format(item.price.toNumber()),
@@ -41,10 +40,10 @@ const ProductsPage = async ({
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <ProductClient data={formattedProducts} />
+        <ProductsClient data={formattedProducts} />
       </div>
     </div>
   );
 };
 
-export default productsPage;
+export default ProductsPage;
