@@ -26,6 +26,8 @@ import { Heading } from "@/components/ui/heading"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { AlertModal } from "@/components/ui/modals/alert-modal"
 import ImageUpload from "@/components/ui/image-upload"
+import { CheckboxItem } from "@radix-ui/react-dropdown-menu"
+import { Checkbox } from "@/components/ui/checkbox"
 
 const formSchema = z.object({
   name: z.string().min(1),
