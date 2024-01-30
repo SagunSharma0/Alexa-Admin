@@ -6,6 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
+import { AlertModal } from "@/components/ui/modals/alert-modal";
 import { Button } from "@/components/ui/button";
 import { 
   DropdownMenu, 
@@ -16,7 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { ProductColumn } from "./columns";
-import { AlertModal } from "@/components/ui/modals/alert-modal";
+
 
 interface CellActionProps {
   data: ProductColumn;
