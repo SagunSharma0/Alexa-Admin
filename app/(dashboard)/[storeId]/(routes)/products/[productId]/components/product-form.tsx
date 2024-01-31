@@ -272,7 +272,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                       Featured
                     </FormLabel>
                     <FormDescription>
-                      This product will appear on the home page
+                      This product will appear on the Overview page
                     </FormDescription>
                   </div>
                 </FormItem>
